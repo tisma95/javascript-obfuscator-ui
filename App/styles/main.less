@@ -2,8 +2,19 @@
 @import (inline) "~codemirror/lib/codemirror.css";
 @import url('~semantic-ui-less/themes/default/globals/site.variables');
 
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  & > h1 {
+    margin-right: 1rem;
+  }
+}
+
 #GithubBadges, #DonateBadges {
   display: flex;
+  margin-bottom: 1rem;
 
   & #donate {
     position: relative;
@@ -134,6 +145,11 @@ pre code {
   border-radius: 5px;
 }
 
+h3 code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 code {
   max-width: 100%;
   overflow-y: hidden;
@@ -144,4 +160,12 @@ code {
   font-size: 85%;
   border-radius: 5px;
   white-space: pre;
+}
+
+.policies {
+  margin-bottom: 8px;
+}
+
+ins:has(> div:empty) {
+  height: 0!important;
 }

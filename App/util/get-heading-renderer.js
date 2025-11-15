@@ -12,5 +12,11 @@ export const getHeadingRenderer = (props) => {
     const text = children.reduce(flatten, '')
     const slug = text.toLowerCase().replace(/\W/g, '-')
 
-    return React.createElement('h' + props.level, {id: slug}, props.children)
+    const Element = 'h' + props.level
+
+    return (
+        <Element id={slug}>
+            {props.children}
+        </Element>
+    );
 };

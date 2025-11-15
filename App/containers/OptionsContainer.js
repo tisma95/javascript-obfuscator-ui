@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
@@ -92,7 +92,33 @@ const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
 
 export const DOMAIN_LOCK_REDIRECT_URL_ABOUT_BLANK = 'about:blank';
 
+const shouldShowAd = (level, headingIndex) => {
+    if (level !== 3) {
+        return false
+    }
+
+    if (headingIndex === null) {
+        return false;
+    }
+
+    if (headingIndex === 0) {
+        return false;
+    }
+
+    if (headingIndex === 5) {
+        return true;
+    }
+
+    return headingIndex % 14 === 0;
+}
+
 const Options = ({dispatch, options}) => {
+    const headingCounter = useRef(0)
+    const readmeAdCounter = useRef(0)
+
+    headingCounter.current = 0
+    readmeAdCounter.current = 0
+
     useEffect(
         () => {
             actions.setOptionsPreset(OPTIONS_PRESET_DEFAULT)
